@@ -265,8 +265,67 @@ public class SpotTheDifference implements GLEventListener, MouseListener {
 
     }
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e){
+        int mx=e.getX(),my=e.getY();
 
+
+
+
+        // First let controller handle clicks on Pause/Menu
+        controller.handleClick(mx, my, 1000, 700);
+        // update paused state from controller
+        paused = controller.isPaused();
+        if (controller.isBackToMenu()) {
+            parentFrame.dispose();   // close the game window only
+            MenuGL.showMenuGL(); // open menu again
+            return;
+        }
+
+        if(paused||gameWon||gameLost) return;
+
+        int margin = 100;  // المسافة من كل جهة
+        int space = 30;    // المسافة بين الصورتين
+        int imgW = (1000 - 2*margin - space)/2;
+        int imgH = 700 - 2*margin;
+
+        int leftX1=margin,leftY1=margin,rightX1=margin+imgW+space,rightY1=margin;
+
+        boolean insideLeft=mx>=leftX1&&mx<=leftX1+imgW&&my>=leftY1&&my<=leftY1+imgH;
+        boolean insideRight=mx>=rightX1&&mx<=rightX1+imgW&&my>=rightY1&&my<=rightY1+imgH;
+        if(!insideLeft&&!insideRight) return;
+
+        int clickX,clickY;
+        if(mx <= leftX1 + imgW){
+            // Left image
+            clickX = (int)((mx - leftX1) * 800f / imgW);
+            clickY = (int)((my - leftY1) * 400f / imgH);
+        } else {
+            // Right image
+            clickX = (int)((mx - rightX1) * 800f / imgW + 400);
+            clickY = (int)((my - rightY1) * 400f / imgH);
+        }
+
+
+        System.out.println("Original X = " + clickX + " | Original Y = " + clickY);
+        boolean found = model.checkClick(clickX, clickY);
+
+
+        if(found){ playClip(correctClip);
+            int h = parentFrame.getContentPane().getHeight();
+            foundClickPositions.add(new Point(mx, h - my));
+        }
+        else {  playClip(wrongClip); if(model.lives<=0) gameLost=true; }
+        controller.setScore(model.score);
+        controller.setLives(model.lives);
+        controller.setTimer(model.timeLeft);
+        controller.setLevel(model.level);
+    }
+
+    private void playClip(Clip clip){
+        if(clip==null) return;
+        if(clip.isRunning()) clip.stop();
+        clip.setFramePosition(0);
+        clip.start();
     }
 
     @Override
@@ -287,5 +346,30 @@ public class SpotTheDifference implements GLEventListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    private static class Star {
+        float x, y, speed;
+        Star(float x, float y, float speed) { this.x = x; this.y = y; this.speed = speed; }
+        void update() {
+            y -= speed; // move down
+            if (y < 0) {
+                y = 700 + 2; // reset top
+                x = (float)(Math.random() * 1000);
+            }
+        }
+    }
+
+
+    private static class Bubble {
+        float x, y, size, speed;
+        Bubble(float x, float y, float size, float speed) { this.x = x; this.y = y; this.size = size; this.speed = speed; }
+        void update() {
+            y += speed; // move up
+            if (y - size > 700) {
+                y = -20 - (float)(Math.random() * 200);
+                x = (float)(Math.random() * 1000);
+            }
+        }
     }
 }
