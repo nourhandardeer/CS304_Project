@@ -224,6 +224,37 @@ public class SpotTheDifference implements GLEventListener, MouseListener {
 
     }
 
+    private void drawQuad(GL gl,float x1,float y1,float x2,float y2){
+        gl.glBegin(GL.GL_QUADS);
+        gl.glTexCoord2f(0f,0f); gl.glVertex2f(x1,y1);
+        gl.glTexCoord2f(1f,0f); gl.glVertex2f(x2,y1);
+        gl.glTexCoord2f(1f,1f); gl.glVertex2f(x2,y2);
+        gl.glTexCoord2f(0f,1f); gl.glVertex2f(x1,y2);
+        gl.glEnd();
+    }
+
+    private void drawCircle(GL gl,float cx,float cy,float r){
+        gl.glLineWidth(4.0f);
+        gl.glBegin(GL.GL_LINE_LOOP);
+        for(int i=0;i<360;i++){
+            double theta=Math.toRadians(i);
+            float x=(float)(r*Math.cos(theta))+cx;
+            float y=(float)(r*Math.sin(theta))+cy;
+            gl.glVertex2f(x,y);
+        }
+        gl.glEnd();
+    }
+    private void drawCircle2(GL gl, float cx, float cy, float r) {
+        int steps = 24;
+        gl.glBegin(GL.GL_TRIANGLE_FAN);
+        gl.glVertex2f(cx, cy);
+        for(int i=0;i<=steps;i++){
+            double angle = 2*Math.PI*i/steps;
+            gl.glVertex2f(cx + (float)Math.cos(angle)*r, cy + (float)Math.sin(angle)*r);
+        }
+        gl.glEnd();
+    }
+
     @Override
     public void reshape(GLAutoDrawable glAutoDrawable, int i, int i1, int i2, int i3) {
 
