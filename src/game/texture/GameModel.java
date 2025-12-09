@@ -41,5 +41,13 @@ public class GameModel {
 
 
 
-
+    public GameModel(String username, int level, GameController c) {
+        this.username = username;
+        this.level = level;
+        this.controller = c;
+        this.timeLeft = 60 + (level-1)*30;
+        loadEndSounds();
+        loadLevel(level);
+        startTimer();
+    }
 }
