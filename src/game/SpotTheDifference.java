@@ -170,11 +170,12 @@ public class SpotTheDifference implements GLEventListener, MouseListener {
 
 
         if(!gameWon){
-            if(paused){
+            if (model.paused) {
                 gl.glColor3f(1f,1f,0f);
                 gl.glRasterPos2f(450,350);
                 glut.glutBitmapString(GLUT.BITMAP_HELVETICA_18,"PAUSED");
-            } else {
+            }
+            else {
                 int margin = 100;  // المسافة من كل جهة
                 int space = 30;    // المسافة بين الصورتين
                 int imgW = (1000 - 2*margin - space)/2;
@@ -274,7 +275,14 @@ public class SpotTheDifference implements GLEventListener, MouseListener {
         // First let controller handle clicks on Pause/Menu
         controller.handleClick(mx, my, 1000, 700);
         // update paused state from controller
-        paused = controller.isPaused();
+        if (controller.isPaused()) {
+            model.pauseGame();
+        } else {
+            model.resumeGame();
+        }
+
+        paused = model.paused;
+
         if (controller.isBackToMenu()) {
             parentFrame.dispose();   // close the game window only
             MenuGL.showMenuGL(); // open menu again

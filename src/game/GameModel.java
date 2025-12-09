@@ -59,6 +59,8 @@ public class GameModel {
                     lives = 0;
                     gameLost = true;
                     stopTimer();
+
+                    checkEndMessage();
                 }
             }
         });
@@ -122,6 +124,17 @@ public class GameModel {
         showMessage = true;
 
     }
+
+    public void pauseGame() {
+        paused = true;
+        if (timer != null) timer.stop();
+    }
+
+    public void resumeGame() {
+        paused = false;
+        if (timer != null) timer.start();
+    }
+
 
 
     public int getOriginalWidth() {

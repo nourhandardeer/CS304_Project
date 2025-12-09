@@ -7,19 +7,28 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class HighScores {
-    private static final String FILE = "game/highscores.txt";
+    private static final String FILE =
+            System.getProperty("user.home") + "/highscores.txt";
+
+
 
     public static void save(String name, int score) {
         try {
             File f = new File(FILE);
-            f.getParentFile().mkdirs();
+
+            // Fix: avoid null parent folder crash
+            File parent = f.getParentFile();
+            if (parent != null) parent.mkdirs();
+
             try (PrintWriter pw = new PrintWriter(new FileWriter(f, true))) {
                 pw.println(name + "," + score);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public static java.util.List<String> loadTop() {
         java.util.List<String> out = new ArrayList<>();
