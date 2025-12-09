@@ -123,4 +123,13 @@ public class GameModel {
         showMessage = true;
 
     }
+
+
+    public int getOriginalWidth() {
+        return levelSizes[(level - 1) * 2][0];
+    }
+
+    public int getOriginalHeight() {
+        return levelSizes[(level - 1) * 2][1];
+    }
 }
