@@ -225,6 +225,13 @@ public class GameModel {
     }
 
 
+    public void playLoseSound() {
+        if (loseClip != null) {
+            if (loseClip.isRunning()) loseClip.stop();
+            loseClip.setFramePosition(0);
+            loseClip.start();
+        }
+    }
 
 
 }
