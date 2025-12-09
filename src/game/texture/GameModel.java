@@ -65,4 +65,9 @@ public class GameModel {
         });
         timer.start();
     }
+
+
+    public void stopTimer() {
+        if (timer != null) timer.stop();
+    }
 }
