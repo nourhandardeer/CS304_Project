@@ -92,4 +92,26 @@ public class GameModel {
             differences.add(new Point(358,49));
         }
     }
+
+
+    public void startNextLevel() {
+        stopTimer(); // وقف التايمر الحالي
+
+
+        level++;          // المستوى الجديد
+        timeLeft = 60;    // وقت ثابت لكل مستوى
+        loadLevel(level); // تحميل الاختلافات
+        foundPoints.clear();
+        gameWon = false;
+        gameLost = false;
+
+        if (controller != null) {
+            controller.setLevel(level);
+            controller.setScore(score);
+            controller.setLives(lives);
+            controller.setTimer(timeLeft);
+        }
+
+        startTimer(); // شغل التايمر للمستوى الجديد
+    }
 }
