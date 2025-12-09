@@ -53,4 +53,16 @@ public class InstructionsGL implements GLEventListener {
     @Override
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     }
+    // لتشغيل نافذة التعليمات
+    public static void showInstructions() {
+        JFrame frame = new JFrame("Instructions");
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+
+        GLCanvas canvas = new GLCanvas();
+        canvas.addGLEventListener(new InstructionsGL());
+
+        frame.getContentPane().add(canvas);
+        frame.setVisible(true);
+    }
 }
