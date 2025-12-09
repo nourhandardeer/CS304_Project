@@ -90,4 +90,14 @@ public class GameController {
             System.out.println("Back to menu triggered");
         }
     }
+    public void setScore(int score) { this.score = score; }
+    public void setLives(int lives) { this.lives = lives; }
+    public void setTimer(int timer) { this.timer = timer; }
+    public void setLevel(int level) { this.level = level; }
+
+
+    public int getScore() { return score; }
+    public int getLives() { return lives; }
+    public int getTimer() { return timer; }
+    public int getLevel() { return level; }
 }
