@@ -132,4 +132,49 @@ public class GameModel {
     public int getOriginalHeight() {
         return levelSizes[(level - 1) * 2][1];
     }
+
+
+    public boolean checkClick(int x, int y) {
+        int tol = 45;
+
+        Iterator<Point> it = differences.iterator();
+        while (it.hasNext()) {
+            Point p = it.next();
+
+            // المسافة الأفقية - اختبر التطابق مباشرة أو عبر النقل بمقدار 400 (نفس الفرق على الصورة المقابلة)
+            int dx1 = Math.abs(p.x - x);
+            int dx2 = Math.abs(p.x - (x >= 400 ? x - 400 : x + 400));
+            int dx = Math.min(dx1, dx2);
+
+            int dy = Math.abs(p.y - y);
+
+            if (dx <= tol && dy <= tol) {
+                // طباعة اختبارية (اختياري) — احذفها بعد التحقق
+                System.out.println("Matched difference at stored=(" + p.x + "," + p.y + ") with click=(" + x + "," + y + "), dx=" + dx + ", dy=" + dy);
+
+                it.remove();
+                foundPoints.add(p);
+                score += 100;
+
+                checkEndMessage();
+                return true;
+            }
+        }
+
+        // لو مفيش فرق صح
+        lives--;
+        if (lives <= 0) {
+            gameLost = true;
+            stopTimer();
+        }
+        checkEndMessage();
+        return false;
+    }
+
+
+
+
+
+
+
 }
