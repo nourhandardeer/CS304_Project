@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2293fa4-9a04-4947-9c26-e9557708cbfd" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_9_2025_2_31_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_9_2025_2_31_PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/InstructionsGL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/HighScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/HighScores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/SpotTheDifference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/SpotTheDifference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CS304_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CS304_Project.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,19 +30,16 @@
     &quot;assignee&quot;: &quot;nourhandardeer&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="70fd00e2-9241-495d-8f9f-57cfa6863feb" />
-        <option name="url" value="https://github.com/nourhandardeer/CS304_Project" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nourhandardeer/CS304_Project.git&quot;,
+    &quot;accountId&quot;: &quot;1cf3cdf1-0ebb-469e-bd8a-e437fccde332&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="36OYN8e8BGwchYkoMShPkukhIix" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -68,7 +62,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -83,13 +77,6 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="game" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
