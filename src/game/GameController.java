@@ -1,7 +1,9 @@
 package game;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import com.sun.opengl.util.GLUT;
+
 public class GameController {
 
     private String playerName;
@@ -22,6 +24,8 @@ public class GameController {
         this.lives = 3;      // 3 lives per level
         this.timer = 60;     // 60 sec per level
     }
+
+    // Update methods
     public void updateScore(int points) { score += points; }
     public void loseLife() { lives--; }
     public void resetTimer() { timer = 60; }
@@ -36,8 +40,9 @@ public class GameController {
         level++;
         lives = 3;
         timer = 60;
-
     }
+
+    // Draw controller info on top of the screen
     public void draw(GL gl, GLU glu, int windowWidth, int windowHeight) {
         // set projection for 2D overlay
         gl.glMatrixMode(GL.GL_PROJECTION);
@@ -59,6 +64,16 @@ public class GameController {
             glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, c);
         }
 
+        // draw buttons
+        drawButton(gl, windowWidth - 200, 10, 80, 30, "Pause");
+        drawButton(gl, windowWidth - 100, 10, 80, 30, "Menu");
+
+        // restore matrices
+        gl.glMatrixMode(GL.GL_PROJECTION);
+        gl.glPopMatrix();
+        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glPopMatrix();
+
 }
     private void drawButton(GL gl, int x, int y, int w, int h, String text) {
         gl.glColor3f(0.2f, 0.2f, 0.2f);
@@ -75,6 +90,7 @@ public class GameController {
             glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, c);
         }
     }
+
     // Handle mouse click on buttons
     public void handleClick(int mouseX, int mouseY, int windowWidth, int windowHeight) {
         // Pause button
@@ -102,4 +118,5 @@ public class GameController {
     public int getLives() { return lives; }
     public int getTimer() { return timer; }
     public int getLevel() { return level; }
+
 }
