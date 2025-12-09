@@ -172,7 +172,48 @@ public class GameModel {
     }
 
 
+    // ترجع النقاط اللي تم اكتشافها (لـ SpotTheDifference OpenGL)
+    public List<Point> differencesFound() {
+        return foundPoints;
+    }
+    private void checkEndMessage() {
+        if (!showMessage) {
+            if (differences.isEmpty()) { // لو اكتشف اللاعب كل الفروق
+                if (level >= 3) {
+                    // آخر مستوى
+                    messageText = "CONGRATULATIONS! You finished all levels!";
+                    messageAlpha = 1f;
+                    messageY = targetY;
+                    showMessage = true;
+                    gameWon = true;
+                    HighScores.save(username, score);
+                    playWinSound(); // تشغيل صوت الفوز
+                } else {
+                    // مستوى كامل لكن مش الأخير
+                    messageText = "LEVEL COMPLETE!";
+                    messageAlpha = 1f;
+                    messageY = targetY;
+                    showMessage = true;
+                    playWinSound(); // تشغيل صوت الفوز
 
+                    // بعد فترة نبدأ المستوى التالي
+                    new Timer(2500, e -> {
+                        ((Timer) e.getSource()).stop();
+                        startNextLevel();
+                        showMessage = false; // إخفاء الرسالة عند بدء المستوى الجديد
+                    }).start();
+                }
+
+            } else if (lives <= 0 || timeLeft <= 0) { // لو الخسارة
+                messageText = "YOU LOSE - Game Over";
+                messageAlpha = 1f;
+                messageY = targetY;
+                showMessage = true;
+                gameLost = true;
+                playLoseSound(); // تشغيل صوت الخسارة
+            }
+        }
+    }
 
 
 
