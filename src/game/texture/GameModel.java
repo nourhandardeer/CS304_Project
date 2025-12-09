@@ -70,4 +70,26 @@ public class GameModel {
     public void stopTimer() {
         if (timer != null) timer.stop();
     }
+
+
+    private void loadLevel(int lvl) {
+        differences = new ArrayList<>();
+        foundPoints.clear();
+        gameWon = false;
+        gameLost = false;
+
+        if (lvl == 1) {
+            differences.add(new Point(91, 284));
+            differences.add(new Point(379, 175));
+            differences.add(new Point(527, 121));
+        } else if (lvl == 2) {
+            differences.add(new Point(195,173));
+            differences.add(new Point(344,56));
+            differences.add(new Point(611,153));
+        } else {
+            differences.add(new Point(427,302));
+            differences.add(new Point(659,326));
+            differences.add(new Point(358,49));
+        }
+    }
 }
