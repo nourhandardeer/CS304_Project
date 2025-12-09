@@ -50,4 +50,19 @@ public class GameModel {
         loadLevel(level);
         startTimer();
     }
+
+
+    private void startTimer() {
+        timer = new Timer(1000, e -> {
+            if (!paused && !gameWon && !gameLost) {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    lives = 0;
+                    gameLost = true;
+                    stopTimer();
+                }
+            }
+        });
+        timer.start();
+    }
 }
