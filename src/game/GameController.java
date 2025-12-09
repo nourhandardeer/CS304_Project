@@ -59,4 +59,35 @@ public class GameController {
             glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, c);
         }
 
-}}
+}
+    private void drawButton(GL gl, int x, int y, int w, int h, String text) {
+        gl.glColor3f(0.2f, 0.2f, 0.2f);
+        gl.glBegin(GL.GL_QUADS);
+        gl.glVertex2f(x, y);
+        gl.glVertex2f(x + w, y);
+        gl.glVertex2f(x + w, y + h);
+        gl.glVertex2f(x, y + h);
+        gl.glEnd();
+
+        gl.glColor3f(1f, 1f, 1f);
+        gl.glRasterPos2f(x + 10, y + 20);
+        for (char c : text.toCharArray()) {
+            glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, c);
+        }
+    }
+    public void handleClick(int mouseX, int mouseY, int windowWidth, int windowHeight) {
+        // Pause button
+        if (mouseX >= windowWidth - 200 && mouseX <= windowWidth - 120 &&
+                mouseY >= 10 && mouseY <= 40) {
+            paused = !paused;
+            System.out.println("Paused toggled: " + paused);
+        }
+
+        // Menu button
+        if (mouseX >= windowWidth - 100 && mouseX <= windowWidth - 20 &&
+                mouseY >= 10 && mouseY <= 40) {
+            backToMenu = true;
+            System.out.println("Back to menu triggered");
+        }
+    }
+}
