@@ -27,4 +27,19 @@ public class GameModel {
     private Clip winClip;
     private Clip loseClip;
     private List<Point> foundPoints = new ArrayList<>();
+    // أبعاد الصور الأصلية لكل ليفل
+    private final int[][] levelSizes = {
+            {397, 264}, {397, 265}, // Level 1
+            {400, 300}, {400, 300}, // Level 2
+            {400, 400}, {400, 400}  // Level 3
+    };
+
+    // لإظهار النتائج في الـ GUI أو OpenGL
+    public boolean gameWon = false;
+    public boolean gameLost = false;
+    public boolean paused = false;
+
+
+
+
 }
