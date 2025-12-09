@@ -216,6 +216,15 @@ public class GameModel {
     }
 
 
+    public void playWinSound() {
+        if (winClip != null) {
+            if (winClip.isRunning()) winClip.stop();
+            winClip.setFramePosition(0);
+            winClip.start();
+        }
+    }
+
+
 
 
 }
