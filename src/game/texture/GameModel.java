@@ -234,4 +234,31 @@ public class GameModel {
     }
 
 
+    private void loadEndSounds() {
+        try {
+            AudioInputStream aisWin = AudioSystem.getAudioInputStream(getClass().getResource("/assets/sounds/win.wav"));
+            winClip = AudioSystem.getClip();
+            winClip.open(aisWin);
+
+            AudioInputStream aisLose = AudioSystem.getAudioInputStream(getClass().getResource("/assets/sounds/lose.wav"));
+            loseClip = AudioSystem.getClip();
+            loseClip.open(aisLose);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean isShowMessage() {
+        return showMessage;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+    public int[][] getLevelSizes() {
+        return levelSizes;
+    }
+
+
+
 }
