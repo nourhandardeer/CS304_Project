@@ -114,4 +114,13 @@ public class GameModel {
 
         startTimer(); // شغل التايمر للمستوى الجديد
     }
+
+
+    public void showFinalMessage(String text) {
+        messageText = text;
+        messageAlpha = 1f;
+        messageY = targetY; // or set wherever you want the text
+        showMessage = true;
+
+    }
 }
