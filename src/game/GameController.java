@@ -75,6 +75,7 @@ public class GameController {
             glut.glutBitmapCharacter(GLUT.BITMAP_HELVETICA_18, c);
         }
     }
+    // Handle mouse click on buttons
     public void handleClick(int mouseX, int mouseY, int windowWidth, int windowHeight) {
         // Pause button
         if (mouseX >= windowWidth - 200 && mouseX <= windowWidth - 120 &&
@@ -90,12 +91,13 @@ public class GameController {
             System.out.println("Back to menu triggered");
         }
     }
+    // setters so caller (SpotTheDifference) can update the displayed values
     public void setScore(int score) { this.score = score; }
     public void setLives(int lives) { this.lives = lives; }
     public void setTimer(int timer) { this.timer = timer; }
     public void setLevel(int level) { this.level = level; }
 
-
+    // Getters
     public int getScore() { return score; }
     public int getLives() { return lives; }
     public int getTimer() { return timer; }
