@@ -14,14 +14,14 @@ public class GameModel {
     public int score = 0;
     public int lives = 3;
     public int timeLeft; // seconds
-    public List<Point> differences; // إحداثيات الاختلاف الأصلية
-    private GameController controller;
+    public List<Point> differences;
+    private GameController  controller;
 
     private Timer timer;
     private boolean showMessage = false;
     private String messageText = "";
     private float messageAlpha = 0f;
-    private int messageY = -50; // يبدأ من فوق الشاشة
+    private int messageY = -50;
     private final int targetY = 350;
     private Clip winClip;
     private Clip loseClip;
@@ -33,7 +33,7 @@ public class GameModel {
             {400, 400}, {400, 400}  // Level 3
     };
 
-    // لإظهار النتائج في الـ GUI أو OpenGL
+
     public boolean gameWon = false;
     public boolean gameLost = false;
     public boolean paused = false;
@@ -94,12 +94,12 @@ public class GameModel {
 
 
     public void startNextLevel() {
-        stopTimer(); // وقف التايمر الحالي
+        stopTimer(); // stop timer
 
 
-        level++;          // المستوى الجديد
-        timeLeft = 60;    // وقت ثابت لكل مستوى
-        loadLevel(level); // تحميل الاختلافات
+        level++;          // new level
+        timeLeft = 60;    // constant time for every level
+        loadLevel(level);
         foundPoints.clear();
         gameWon = false;
         gameLost = false;
@@ -111,7 +111,7 @@ public class GameModel {
             controller.setTimer(timeLeft);
         }
 
-        startTimer(); // شغل التايمر للمستوى الجديد
+        startTimer();
     }
 
 
@@ -140,7 +140,7 @@ public class GameModel {
         while (it.hasNext()) {
             Point p = it.next();
 
-            // المسافة الأفقية - اختبر التطابق مباشرة أو عبر النقل بمقدار 400 (نفس الفرق على الصورة المقابلة)
+
             int dx1 = Math.abs(p.x - x);
             int dx2 = Math.abs(p.x - (x >= 400 ? x - 400 : x + 400));
             int dx = Math.min(dx1, dx2);
@@ -148,7 +148,7 @@ public class GameModel {
             int dy = Math.abs(p.y - y);
 
             if (dx <= tol && dy <= tol) {
-                // طباعة اختبارية (اختياري) — احذفها بعد التحقق
+
                 System.out.println("Matched difference at stored=(" + p.x + "," + p.y + ") with click=(" + x + "," + y + "), dx=" + dx + ", dy=" + dy);
 
                 it.remove();
@@ -171,45 +171,45 @@ public class GameModel {
     }
 
 
-    // ترجع النقاط اللي تم اكتشافها (لـ SpotTheDifference OpenGL)
+
     public List<Point> differencesFound() {
         return foundPoints;
     }
     private void checkEndMessage() {
         if (!showMessage) {
-            if (differences.isEmpty()) { // لو اكتشف اللاعب كل الفروق
+            if (differences.isEmpty()) { // if the player achieved all goals
                 if (level >= 3) {
-                    // آخر مستوى
+                    // fainal level
                     messageText = "CONGRATULATIONS! You finished all levels!";
                     messageAlpha = 1f;
                     messageY = targetY;
                     showMessage = true;
                     gameWon = true;
                     HighScores.save(username, score);
-                    playWinSound(); // تشغيل صوت الفوز
+                    playWinSound(); // access the win`s sound
                 } else {
-                    // مستوى كامل لكن مش الأخير
+
                     messageText = "LEVEL COMPLETE!";
                     messageAlpha = 1f;
                     messageY = targetY;
                     showMessage = true;
-                    playWinSound(); // تشغيل صوت الفوز
+                    playWinSound(); // access the win`s sound
 
-                    // بعد فترة نبدأ المستوى التالي
+
                     new Timer(2500, e -> {
                         ((Timer) e.getSource()).stop();
                         startNextLevel();
-                        showMessage = false; // إخفاء الرسالة عند بدء المستوى الجديد
+                        showMessage = false; // hide the message when begin new level
                     }).start();
                 }
 
-            } else if (lives <= 0 || timeLeft <= 0) { // لو الخسارة
+            } else if (lives <= 0 || timeLeft <= 0) { // if lose
                 messageText = "YOU LOSE - Game Over";
                 messageAlpha = 1f;
                 messageY = targetY;
                 showMessage = true;
                 gameLost = true;
-                playLoseSound(); // تشغيل صوت الخسارة
+                playLoseSound(); // access the lose`s sound
             }
         }
     }
